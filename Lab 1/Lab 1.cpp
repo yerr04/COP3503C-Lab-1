@@ -34,6 +34,8 @@ int main()
 	string second;
 	vector<string> firstVector;
 	vector<string> secondVector;
+
+    
     
 	cout << "Enter a title: " << endl;
 	getline(cin, title);
@@ -44,6 +46,16 @@ int main()
 	cout << "Enter the column 2 header: ";
 	getline(cin, col2);
 	cout << "You entered: " << col2 << endl;
+    
+    while (input != "-1") {
+		cout << "Enter a data point (-1 to stop input): " << endl;
+		getline(cin, input);
+        
+		
+        
+        
+        
+    }
     
     
     
