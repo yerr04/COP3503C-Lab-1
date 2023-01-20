@@ -26,6 +26,8 @@ int main()
 
     Print out data in chart format
     */
+
+   // variables
   string title;
 	string col1;
 	string col2;
@@ -36,22 +38,30 @@ int main()
 	vector<string> secondVector;
 
     
-    
-	cout << "Enter a title: " << endl;
-	getline(cin, title);
+  // gets the title, column 1 header, and column 2 header
+	cout << "Enter a title for the data:" << endl;
+  getline(cin, title);
 	cout << "You entered: " << title << endl;
-	cout << "Enter the column 1 header: " << endl;
+
+	cout << "Enter the column 1 header:" << endl;
 	getline(cin, col1);
 	cout << "You entered: " << col1 << endl;
-	cout << "Enter the column 2 header: ";
+
+    cout << "Enter the column 2 header:" << endl;
 	getline(cin, col2);
 	cout << "You entered: " << col2 << endl;
+
     
     while (input != "-1") {
       int i = 0;
             
-		  cout << "Enter a data point (-1 to stop input): " << endl;
+		  cout << "Enter a data point (-1 to stop input):" << endl;
 		  getline(cin, input);
+
+      // if the user enters -1, the program will stop asking for input
+      if (input == "-1") {
+        break;
+      }
       
       // checks if the input is valid using try/catch blocks
       // if the entry has no comma
@@ -90,30 +100,37 @@ int main()
       // default case
       int commaIndex = input.find(",");
       first = input.substr(0, commaIndex);
-      second = input.substr(commaIndex + 1, input.length());
+      second = input.substr(commaIndex + 2, input.length());
 
       // prints out the data points
       cout << "Data string: " << first << endl;
       cout << "Data integer: " << second << endl;
 
+
       // appends the first and second strings to the vectors
       firstVector.push_back(first);
       secondVector.push_back(second);
-
-      if (input == "-1") {
-        break;
-      }
       
-
-        
-		
-        
-        
-        
+  
     }
     
-    
-    
+      // table formatting - have a line going down the middle of the table
+      cout << endl;
+      cout << setw(33) << right << title << endl;
+      cout << setw(20) << left << col1 << "|" << setw(23) << right << col2 << endl;
+      cout << "--------------------------------------------" << endl;
+      for (int i = 0; i < firstVector.size(); i++) {
+        cout << setw(20) << left << firstVector.at(i) << "|" << setw(23) << right << secondVector.at(i) << endl;
+      }
+      cout << endl;
+      // histogram formatting - justified right with a setw value of 20, and use * to represent the data
+      for (int i = 0; i < firstVector.size(); i++) {
+        cout << setw(20) << right << firstVector.at(i) << " ";
+        for (int j = 0; j < stoi(secondVector.at(i)); j++) {
+          cout << setw(1) << "*";
+        }
+        cout << endl;
+      }
 
     return 0;
 }
